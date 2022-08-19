@@ -26,5 +26,8 @@ public class Member {
 
     @OneToMany(mappedBy = "member")
     private List<Orders> orders = new ArrayList<>();
-
+    //하이버네이트가 영속화할때 위 방식으로 해야 나중에 set..어쩌구..뭐 문제가있다고함 관리측면에서
+//    public Member() {
+//        orders = new ArrayList<>();
+//    }
 }
