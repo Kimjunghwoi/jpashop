@@ -13,7 +13,7 @@ import static javax.persistence.FetchType.LAZY;
 public class Delivery {
     @Id
     @GeneratedValue
-    @Column(name = "delivery_id")
+    @Column(name = "delivery_id", nullable = false)
     private Long id;
 
     @OneToOne(mappedBy = "delivery", fetch = LAZY)

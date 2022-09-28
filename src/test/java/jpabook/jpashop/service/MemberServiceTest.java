@@ -3,7 +3,10 @@ package jpabook.jpashop.service;
 import jpabook.jpashop.domain.Member;
 import jpabook.jpashop.repository.MemberRepository;
 import org.junit.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Rollback;
@@ -14,6 +17,9 @@ import javax.persistence.EntityManager;
 
 import static org.assertj.core.api.Assertions.fail;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.BDDMockito.given;
+import static org.mockito.BDDMockito.then;
+import static org.mockito.Mockito.times;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -23,6 +29,9 @@ public class MemberServiceTest {
     @Autowired MemberService memberService;
     @Autowired MemberRepository memberRepository;
     @Autowired EntityManager em;
+
+    @Mock
+    OrderService orderService;
 
 
     @Test
@@ -56,6 +65,22 @@ public class MemberServiceTest {
 
         //then
         fail("예외가 발생해야 한다.");
+    }
+
+    @Test
+    @ExtendWith(MockitoExtension.class)
+    public void Mock사용() throws Exception {
+
+        //given
+        given(orderService.order(1L,1L,1));
+
+        //when
+        orderService.order(1L,1L,1);
+        orderService.order(1L,1L,1);
+
+        //then
+//        then(orderService, times(2)).get
+
     }
 
 }
