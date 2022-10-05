@@ -29,6 +29,7 @@ public class Orders {
     //FetchType.EAGER -- 즉시조회A
     // * to One 는 기본이 EAGER
     //JPQL SELECT O FROM ORDER O -> SQL SELECT * FROM ORDER == N+1 문제..
+    //따라서 fetch = LAZY로 전부 변경.. 한번에 조회 필요시 JPQL의 fetch join을 사용
 
     @OneToMany(mappedBy = "orders", cascade = ALL)
     private List<OrderItem> orderItems = new ArrayList<>();
