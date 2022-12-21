@@ -1,5 +1,6 @@
 package jpabook.jpashop.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jpabook.jpashop.domain.Address;
 import jpabook.jpashop.domain.Orders;
 import lombok.Getter;
@@ -24,6 +25,7 @@ public class Member {
     @Embedded
     private Address address;
 
+    @JsonIgnore // 양방향인 경우 걸어줘야 한다. API 호출 시 무한으로 계속 바인딩하기때문.
     @OneToMany(mappedBy = "member")
     private List<Orders> orders = new ArrayList<>();
     //하이버네이트가 영속화할때 위 방식으로 해야 나중에 set..어쩌구..뭐 문제가있다고함 관리측면에서

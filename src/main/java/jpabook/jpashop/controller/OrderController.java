@@ -49,7 +49,7 @@ public class OrderController {
         List<Orders> orders = orderService.findOrders(orderSearch);
         model.addAttribute("orders", orders);
 
-        return "/order/orderList";
+        return "order/orderList";
 
     }
 
